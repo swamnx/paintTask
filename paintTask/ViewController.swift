@@ -17,7 +17,7 @@ class ViewController: UIViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        paintView.backgroundColor  = .systemTeal
+        paintView.backgroundColor = .systemTeal
     }
     
     @IBAction func handlePan(recognizer: UIPanGestureRecognizer) {
