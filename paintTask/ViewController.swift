@@ -12,22 +12,21 @@ class ViewController: UIViewController {
     @IBOutlet weak var paintView: UIImageView!
     var startDrawingPoint: CGPoint?
     
-    @IBAction func clearPaint(_ sender: UIButton) {
-        paintView.image = nil
-    }
     override func viewDidLoad() {
         super.viewDidLoad()
         paintView.backgroundColor = .systemTeal
     }
     
+    @IBAction func clearPaint(_ sender: UIButton) {
+        paintView.image = nil
+    }
+    
     @IBAction func handlePan(recognizer: UIPanGestureRecognizer) {
         let endDrawingPoint = recognizer.location(in: paintView)
-    
         if let startPoint = startDrawingPoint,
            recognizer.state == .changed || recognizer.state == .ended {
             drawLineInPaintView(from: startPoint, to: endDrawingPoint)
         }
-        
         startDrawingPoint = endDrawingPoint
     }
     
