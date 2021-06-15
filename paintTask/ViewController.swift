@@ -9,38 +9,27 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    @IBOutlet weak var paintView: UIImageView!
     var startDrawingPoint: CGPoint?
+    
+    @IBOutlet weak var customPaintView: CustomPaintView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        paintView.backgroundColor = .systemTeal
+        customPaintView.backgroundColor = .systemTeal
     }
     
     @IBAction func clearPaint(_ sender: UIButton) {
-        paintView.image = nil
+        customPaintView?.clearPaint()
     }
     
     @IBAction func handlePan(recognizer: UIPanGestureRecognizer) {
-        let endDrawingPoint = recognizer.location(in: paintView)
+        let endDrawingPoint = recognizer.location(in: customPaintView)
         if let startPoint = startDrawingPoint,
            recognizer.state == .changed || recognizer.state == .ended {
-            drawLineInPaintView(from: startPoint, to: endDrawingPoint)
+            customPaintView.addLine(line: .init(startPoint: startPoint, endPoint: endDrawingPoint))
+            customPaintView.setNeedsDisplay()
         }
         startDrawingPoint = endDrawingPoint
     }
-    
-    private func drawLineInPaintView(from startDrawingPoint: CGPoint, to endDrawingPoint: CGPoint) {
-        UIGraphicsBeginImageContext(paintView.frame.size)
-        paintView.image?.draw(in: paintView.bounds)
-        guard let context = UIGraphicsGetCurrentContext() else { return }
-        context.setLineWidth(3)
-        context.setStrokeColor(UIColor.black.cgColor)
-        context.setLineCap(.round)
-        context.move(to: startDrawingPoint)
-        context.addLine(to: endDrawingPoint)
-        context.strokePath()
-        paintView.image = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-    }
+
 }

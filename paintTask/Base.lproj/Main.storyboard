@@ -16,13 +16,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="KFs-8p-L6W">
-                                <rect key="frame" x="30" y="90" width="260" height="448"/>
-                                <gestureRecognizers/>
-                                <connections>
-                                    <outletCollection property="gestureRecognizers" destination="hMF-8R-46m" appends="YES" id="6mg-kz-Rue"/>
-                                </connections>
-                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RE9-1u-YPQ">
                                 <rect key="frame" x="30" y="30" width="260" height="30"/>
                                 <color key="backgroundColor" systemColor="systemTealColor"/>
@@ -33,21 +26,29 @@
                                     <action selector="clearPaint:" destination="BYZ-38-t0r" eventType="touchUpInside" id="mXj-oU-lE5"/>
                                 </connections>
                             </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uu9-dI-Q15" customClass="CustomPaintView" customModule="paintTask" customModuleProvider="target">
+                                <rect key="frame" x="30" y="90" width="260" height="448"/>
+                                <color key="backgroundColor" systemColor="systemTealColor"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="hMF-8R-46m" appends="YES" id="K8R-oF-KYF"/>
+                                </connections>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="RE9-1u-YPQ" secondAttribute="trailing" constant="30" id="5iR-Sc-WQc"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="uu9-dI-Q15" secondAttribute="bottom" constant="30" id="KPd-Oh-H11"/>
+                            <constraint firstItem="uu9-dI-Q15" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="30" id="KcQ-gN-vBU"/>
                             <constraint firstItem="RE9-1u-YPQ" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="30" id="bq0-AC-Vsf"/>
-                            <constraint firstItem="KFs-8p-L6W" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="30" id="dBx-LV-OVE"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="KFs-8p-L6W" secondAttribute="bottom" constant="30" id="gbd-hf-5cW"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="KFs-8p-L6W" secondAttribute="trailing" constant="30" id="i5I-X1-9a1"/>
+                            <constraint firstItem="uu9-dI-Q15" firstAttribute="top" secondItem="RE9-1u-YPQ" secondAttribute="bottom" constant="30" id="hPH-OE-Hns"/>
                             <constraint firstItem="RE9-1u-YPQ" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="30" id="nv4-W9-4Lp"/>
-                            <constraint firstItem="KFs-8p-L6W" firstAttribute="top" secondItem="RE9-1u-YPQ" secondAttribute="bottom" constant="30" id="xsI-L6-WTp"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="uu9-dI-Q15" secondAttribute="trailing" constant="30" id="sLz-X0-BP8"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="paintView" destination="KFs-8p-L6W" id="M2T-tt-33p"/>
+                        <outlet property="customPaintView" destination="uu9-dI-Q15" id="nnN-Z3-6Ik"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
